@@ -5,7 +5,6 @@ from typing import Tuple
 import random
 
 
-#  note: this generator was NOT used to generate the 400 test instances
 class AbafGenerator:
 
     # n_s: number of atoms in the language
