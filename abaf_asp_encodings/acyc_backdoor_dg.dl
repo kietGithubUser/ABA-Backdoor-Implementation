@@ -1,0 +1,17 @@
+% encodings based from https://github.com/mk-tu/argBTW/blob/main/ASP/minimumAcycBackdoor.asp
+
+{backdoor(F) : assumption(F)}.
+sub_node(F) :- node(F), not backdoor(F).
+
+
+% check if remaining is weakly acyclic
+:- path(X,X), assumption(X).
+path(X,Y) :- sub_node(X), sub_node(Y), edge(X,Y).
+path(X,Y) :- sub_node(Y), edge(Z,Y), path(X,Z).
+
+% minimize backdoor
+backdoorsize(Y) :- #count{X:backdoor(X)}=Y.
+#minimize {X:backdoorsize(X)}.
+
+#show backdoor/1.
+
